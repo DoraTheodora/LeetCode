@@ -31,8 +31,7 @@ class NumArray {
     public NumArray(int[] nums) 
     {
         arr = new int[nums.length];
-        for(int i = 0; i < nums.length; i++)
-            arr[i] = nums[i];
+        arr = nums;
     }
     
     public int sumRange(int i, int j) 
@@ -43,6 +42,12 @@ class NumArray {
         return sum;
     }
 }
+
+/**
+ * Your NumArray object will be instantiated and called as such:
+ * NumArray obj = new NumArray(nums);
+ * int param_1 = obj.sumRange(i,j);
+ */
 
 /**
  * Your NumArray object will be instantiated and called as such:
