@@ -37,44 +37,26 @@ s consists of parentheses only '()[]{}'.
 class Solution {
     public boolean isValid(String s) 
     {
-        if(s.length() == 1)
+        if(s.length()%2==1)
             return false;
-        Stack<Character> myStack = new Stack<>();
+        Stack<Character> stack = new Stack<>();
         for(int i = 0; i < s.length(); i++)
         {
-            if(s.charAt(i) == '(')
-                myStack.push(s.charAt(i));
-            else if(s.charAt(i) == '[')
-                myStack.push(s.charAt(i));
-            else if(s.charAt(i) == '{')
-                myStack.push(s.charAt(i));
-            
-            else if(s.charAt(i) == ')')
+            if(s.charAt(i) == '(' || s.charAt(i) == '[' || s.charAt(i) == '{')
+                stack.push(s.charAt(i));
+            else 
             {
-                if(myStack.isEmpty())
+                if(stack.isEmpty())
                     return false;
-                char fromStack = myStack.pop();
-                if(fromStack != '(')
-                   return false;
-            }
-            else if(s.charAt(i) == ']')
-            {
-                if(myStack.isEmpty())
+                if(s.charAt(i) == ')' && stack.pop() != '(')
                     return false;
-                char fromStack = myStack.pop();
-                if(fromStack != '[')
-                   return false;
-            }
-            else if(s.charAt(i) == '}')
-            {
-                if(myStack.isEmpty())
+                if(s.charAt(i) == ']' && stack.pop() != '[')
                     return false;
-                char fromStack = myStack.pop();
-                if(fromStack != '{')
-                   return false;
+                if(s.charAt(i) == '}' && stack.pop() != '{')
+                    return false;
             }
         }
-        if(myStack.isEmpty())
+        if(stack.isEmpty())
             return true;
         else
             return false;
